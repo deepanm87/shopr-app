@@ -5,28 +5,6 @@ import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
-// Represents a single product inside an order
-export interface OrderProduct {
-  product: {
-    _id: string;
-    name: string;
-    price: number;
-    image?: string; // If you know the exact image type from Sanity, replace this
-  } | null;
-  quantity: number | null;
-}
-
-// Represents the full order object
-export interface Order {
-  orderNumber: string;
-  orderDate: string | null;
-  status: "paid" | "pending" | "failed" | string; // Expand if you have more statuses
-  totalPrice: number | null;
-  amountDiscount?: number | null;
-  currency: string;
-  products?: OrderProduct[];
-}
-
 async function Orders() {
   const { userId } = await auth();
 
@@ -49,7 +27,7 @@ async function Orders() {
           </div>
         ) : (
           <div className="space-y-6 sm:space-y-8">
-            {orders.map( (order: Order) => (
+            {orders.map((order) => (
               <div
                 key={order.orderNumber}
                 className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden"

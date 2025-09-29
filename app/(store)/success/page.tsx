@@ -10,7 +10,6 @@ function SuccessPage() {
   const searchParams = useSearchParams();
   const orderNumber = searchParams.get("orderNumber");
   const clearBasket = useBasketStore((state) => state.clearBasket);
-  const sessionId = searchParams.get("session_id");
 
   useEffect(() => {
     if (orderNumber) {
@@ -56,12 +55,6 @@ function SuccessPage() {
                 </span>
               </p>
             )}
-            {sessionId && (
-              <p className="text-gray-600 flex justify-between">
-                <span>Transaction ID:</span>
-                <span className="font-mono text-sm">{sessionId}</span>
-              </p>
-            )} 
           </div>
         </div>
 
