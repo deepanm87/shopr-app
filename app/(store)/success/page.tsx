@@ -1,21 +1,22 @@
-"use client"
+"use client";
 
-import { useEffect } from "react"
-import { useSearchParams } from "next/navigation"
-import useBasketStore from "@/store/store"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import useBasketStore from "@/store/store";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
-export default function SuccessPage() {
-  const searchParams = useSearchParams()
-  const orderNumber = searchParams.get("orderNumber")
-  const clearBasket = useBasketStore(state => state.clearBasket())
+function SuccessPage() {
+  const searchParams = useSearchParams();
+  const orderNumber = searchParams.get("orderNumber");
+  const clearBasket = useBasketStore((state) => state.clearBasket);
+  const sessionId = searchParams.get("session_id");
 
   useEffect(() => {
     if (orderNumber) {
-      clearBasket()
+      clearBasket();
     }
-  }, [orderNumber, clearBasket])
+  }, [orderNumber, clearBasket]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
@@ -28,7 +29,7 @@ export default function SuccessPage() {
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <path 
+              <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
@@ -39,7 +40,7 @@ export default function SuccessPage() {
         </div>
 
         <h1 className="text-4xl font-bold mb-6 text-center">
-          Thank you for your order!
+          Thank You for Your Order!
         </h1>
 
         <div className="border-t border-b border-gray-200 py-6 mb-6">
@@ -55,6 +56,12 @@ export default function SuccessPage() {
                 </span>
               </p>
             )}
+            {sessionId && (
+              <p className="text-gray-600 flex justify-between">
+                <span>Transaction ID:</span>
+                <span className="font-mono text-sm">{sessionId}</span>
+              </p>
+            )} 
           </div>
         </div>
 
@@ -73,5 +80,7 @@ export default function SuccessPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
+
+export default SuccessPage;

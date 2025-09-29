@@ -1,18 +1,18 @@
-import { formatCurrency } from "@/lib/formatCurrency"
-import { imageUrl } from "@/lib/imageUrl"
-import { getMyOrders } from "@/sanity/lib/orders/getMyOrders"
-import { auth } from "@clerk/nextjs/server"
-import Image from "next/image"
-import { redirect } from "next/navigation"
+import { formatCurrency } from "@/lib/formatCurrency";
+import { imageUrl } from "@/lib/imageUrl";
+import { getMyOrders } from "@/sanity/lib/orders/getMyOrders";
+import { auth } from "@clerk/nextjs/server";
+import Image from "next/image";
+import { redirect } from "next/navigation";
 
-export default async function Orders() {
-  const { userId } = await auth()
+async function Orders() {
+  const { userId } = await auth();
 
   if (!userId) {
-    return redirect("/")
+    return redirect("/");
   }
 
-  const orders = await getMyOrders(userId)
+  const orders = await getMyOrders(userId);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
@@ -21,17 +21,17 @@ export default async function Orders() {
           My Orders
         </h1>
 
-        { orders.length === 0 ? (
+        {orders.length === 0 ? (
           <div className="text-center text-gray-600">
             <p>You have not placed any orders yet.</p>
           </div>
         ) : (
           <div className="space-y-6 sm:space-y-8">
-            { orders.map(order => (
+            {orders.map((order) => (
               <div
                 key={order.orderNumber}
                 className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden"
-              > 
+              >
                 <div className="p-4 sm:p-6 border-b border-gray-200">
                   <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center mb-4">
                     <div>
@@ -47,13 +47,12 @@ export default async function Orders() {
                       <p className="font-medium">
                         {order.orderDate
                           ? new Date(order.orderDate).toLocaleDateString()
-                          : "N/A"
-                        }
+                          : "N/A"}
                       </p>
                     </div>
                   </div>
 
-                  <div className="flexd flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
                     <div className="flex items-center">
                       <span className="text-sm mr-2">Status:</span>
                       <span
@@ -61,7 +60,7 @@ export default async function Orders() {
                           order.status === "paid"
                             ? "bg-green-100 text-green-800"
                             : "bg-gray-100 text-gray-800"
-                          }`}
+                        }`}
                       >
                         {order.status}
                       </span>
@@ -97,7 +96,7 @@ export default async function Orders() {
                   </p>
 
                   <div className="space-y-3 sm:space-y-4">
-                    {order.products?.map(product => (
+                    {order.products?.map((product) => (
                       <div
                         key={product.product?._id}
                         className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-2 border-b last:border-b-0"
@@ -105,7 +104,7 @@ export default async function Orders() {
                         <div className="flex items-center gap-3 sm:gap-4">
                           {product.product?.image && (
                             <div className="relative h-14 w-14 sm:h-16 sm:w-16 flex-shrink-0 rounded-md overflow-hidden">
-                              <Image 
+                              <Image
                                 src={imageUrl(product.product.image).url()}
                                 alt={product.product?.name ?? ""}
                                 className="object-cover"
@@ -129,8 +128,7 @@ export default async function Orders() {
                                 product.product.price * product.quantity,
                                 order.currency
                               )
-                            : "N/A"
-                          }
+                            : "N/A"}
                         </p>
                       </div>
                     ))}
@@ -142,6 +140,7 @@ export default async function Orders() {
         )}
       </div>
     </div>
-  )
+  );
 }
 
+export default Orders;
