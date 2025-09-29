@@ -11,7 +11,7 @@ export interface OrderProduct {
     _id: string;
     name: string;
     price: number;
-    image?: any; // If you know the exact image type from Sanity, replace this
+    image?: string; // If you know the exact image type from Sanity, replace this
   } | null;
   quantity: number | null;
 }
