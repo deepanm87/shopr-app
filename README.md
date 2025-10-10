@@ -1,36 +1,23 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This project is  a customizable e-commerce store with a Sanity backend that allows users to add products with details of the product name, description, price, quantity of stock, and a picture. We can add items to the basket, increase and decrease quantity, and also complete a dummy checkout via stripe payments and view orders created in the app. It also supports authentication using Clerk API.
 
-## Getting Started
 
-First, run the development server:
+This is the main home page with a header, search bar, basket and orders. 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<img width="2527" height="1160" alt="home page" src="https://github.com/user-attachments/assets/9e1c6717-517f-47f6-a7f3-d9314d783f75" />
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This is the checkout page that uses Stripe payment.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<img width="1358" height="827" alt="checkout with stripe" src="https://github.com/user-attachments/assets/e5951cc4-ba88-46e1-90b9-d10f345029b0" />
 
-## Learn More
+This is the orders page that shows list of purchased orders.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<img width="1239" height="1094" alt="Orders page" src="https://github.com/user-attachments/assets/f107d451-042d-4705-b53d-b839ba1c8580" />
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Features of searching for items by product names and filtering specific categories of products.
 
-## Deploy on Vercel
+<img width="1486" height="586" alt="search and filter functionality" src="https://github.com/user-attachments/assets/99d22344-9d58-42c2-8a9d-2e682ddc41d3" />
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
